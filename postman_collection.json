@@ -1,0 +1,225 @@
+{
+  "info": {
+    "name": "Klinik API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"password\": \"password\",\n  \"phone\": \"081234567890\",\n  \"address\": \"Jl. Example No. 123\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/register",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "register"]
+            }
+          }
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@klinik.com\",\n  \"password\": \"password\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/login",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "login"]
+            }
+          }
+        },
+        {
+          "name": "Get Me",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/me",
+              "host": ["{{base_url}}"],
+              "path": ["me"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Patient",
+      "item": [
+        {
+          "name": "Get Departments",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/departments",
+              "host": ["{{base_url}}"],
+              "path": ["departments"]
+            }
+          }
+        },
+        {
+          "name": "Take Queue",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"department_id\": 1,\n  \"queue_date\": \"2026-01-13\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/queues/take",
+              "host": ["{{base_url}}"],
+              "path": ["queues", "take"]
+            }
+          }
+        },
+        {
+          "name": "My Queues",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/queues/my",
+              "host": ["{{base_url}}"],
+              "path": ["queues", "my"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin",
+      "item": [
+        {
+          "name": "Create Department",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Poli Jantung\",\n  \"description\": \"Pelayanan kesehatan jantung\",\n  \"is_active\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/admin/departments",
+              "host": ["{{base_url}}"],
+              "path": ["admin", "departments"]
+            }
+          }
+        },
+        {
+          "name": "Get Queues",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/admin/queues?date=2026-01-13",
+              "host": ["{{base_url}}"],
+              "path": ["admin", "queues"],
+              "query": [
+                {
+                  "key": "date",
+                  "value": "2026-01-13"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Call Queue",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/admin/queues/1/call",
+              "host": ["{{base_url}}"],
+              "path": ["admin", "queues", "1", "call"]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8000/api"
+    },
+    {
+      "key": "token",
+      "value": ""
+    }
+  ]
+}
