@@ -2,6 +2,8 @@
 
 REST API buat sistem antrian klinik. Backend ini yang handle semua logic bisnis, autentikasi, sama manajemen data buat aplikasi mobile-nya.
 
+ini repo buat frontend : https://github.com/jayzajie/klinik-antrian_frontend
+
 ## Tech Stack
 
 ### Core Framework
